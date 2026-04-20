@@ -1,0 +1,87 @@
+﻿<Window x:Class="pokedex_databaze.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:pokedex_databaze"
+            mc:Ignorable="d"
+            Icon="/icon.ico"
+            Title="Pokedex database by Alex Nicolas" Height="500" Width="800" MinHeight="500" MinWidth="800">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MinWidth="400"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid x:Name="dgPokedex"
+                      Grid.Column="0" 
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      Margin="0,0,10,0"
+                      SelectionChanged="changePokemon">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Width="20" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Type" Width="*" Binding="{Binding Type}"/>
+                <DataGridTextColumn Header="HP" Width="50" Binding="{Binding HP}"/>
+                <DataGridTextColumn Header="ATK" Width="50" Binding="{Binding Attack}"/>
+                <DataGridTextColumn Header="DEF" Width="50" Binding="{Binding Defense}"/>
+                <DataGridTextColumn Header="SPEED" Width="50" Binding="{Binding Speed}"/>
+                <DataGridCheckBoxColumn Header="Discovered" Width="80" Binding="{Binding Discovered}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Column="1" 
+                    BorderBrush="LightGray" 
+                    BorderThickness="1" 
+                    Padding="15" 
+                    Background="#F9F9F9"
+                    CornerRadius="4">
+            <StackPanel>
+                <TextBlock Text="Pokémon Details" 
+                               FontSize="18" 
+                               FontWeight="Bold"
+                               x:Name="heading"/>
+                <StackPanel>
+                    <Label Content="Name:"/>
+                    <TextBox x:Name="nameTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Type:"/>
+                    <TextBox x:Name="typeTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="HP:"/>
+                    <TextBox x:Name="HPTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="ATK:"/>
+                    <TextBox x:Name="ATKTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="DEF:"/>
+                    <TextBox x:Name="DEFTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="SPEED:"/>
+                    <TextBox x:Name="SPEEDTextBox"></TextBox>
+                </StackPanel>
+                <StackPanel>
+                    <Label Content="Discovered:"/>
+                    <CheckBox x:Name="DiscoveredCheckBox"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <Button Content="Save" Margin="0,0,8,0" Width="75" Click="saveObject"/>
+                    <Button Content="Clear" Width="75" Click="clear"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="Add" Margin="0,0,8,0" Width="75" Click="addPokemon"/>
+                    <Button Content="Remove" Margin="0,0,8,0" Width="75" Click="removePokemon"/>
+                </StackPanel>
+                <Button Content="Load Pokémons" Width="100" Margin="0,10,0,0" Click="loadPokemonList"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
